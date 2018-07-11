@@ -1,0 +1,18 @@
+div.remark-slide-container h1 {
+
+	letter-spacing: -1px;
+font-size: 36px;
+font-weight: normal;
+}
+
+div.remark-slide-container h3 {
+	letter-spacing: -1px;
+	font-size: 18px;
+	font-weight: normal;
+	padding-top: 50px
+}
+
+div.remark-slide-container table {
+  width:auto;
+  font-size: 12px;
+}
