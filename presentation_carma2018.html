@@ -3,16 +3,17 @@
   <head>
     <title>Access and analysis of ISTAC data through the use of R and Shiny</title>
     <meta charset="utf-8">
-    <meta name="author" content="Christian González-Martel  José M. Cazorla-Artiles Carlos J. Perez-González" />
+    <meta name="author" content="Christian González-Martel, José M. Cazorla-Artiles, Carlos J. Perez-González" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
 # Access and analysis of ISTAC data through the use of R and Shiny
-### Christian González-Martel <br/>José M. Cazorla-Artiles<br/>Carlos J. Perez-González
-### 2018/07/08
+### Christian González-Martel, José M. Cazorla-Artiles, Carlos J. Perez-González
+### 2018/07/12
 
 ---
 
@@ -25,30 +26,19 @@ class: center, middle, inverse, title-slide
 
 class: inverse, center, middle
 
-# WHY DO THIS PROJECT?
+# WHY THIS PROJECT?
 
 ---
 
 # Introduction
 
-The main objective in this work is to show an alternative to create open data portals in public administration.
-So that, it can ensure that certain data and information are accessible and available to everyone in an interactive way.
+The first aim of this project was to create a [R](https://www.r-project.org/) package that used the [ISTAC](http://www.gobiernodecanarias.org/istac/)Base's API to work with open data that this organization supply.
 
---
+We realized that we can use this package with the Shiny R package to create a web page that allows users to visualize ISTAC data in a human readeable way.
 
-As example case, the datasets provided by Canary Institute of Statistics ([ISTAC](http://www.gobiernodecanarias.org/istac/)) are taken.
+Public administrations should aim at the friendly use of the data they provide.
 
---
 
-Two steps are considered:
-
---
-
-- [istacr](https://github.com/rOpenSpain/istacr): R package to make programatic access to data from the  ([ISTAC](http://www.gobiernodecanarias.org/istac/)) base API.
-
---
-
-- [Canary Islands Tourism Dashboard](https://jmcartiles.shinyapps.io/canary_islands_tourism_dashboard/): A Shiny dashboard to disseminate data and insights from the [Touristic Expenditure Survey of the ISTAC](http://www.gobiernodecanarias.org/istac/temas_estadisticos/sectorservicios/hosteleriayturismo/demanda/C00028A.html).
 
 
 ---
@@ -57,29 +47,63 @@ Two steps are considered:
 
 The seed of this project comes from New Zealand. In precise it comes from the [New Zealand Tourism Dashboard](http://tourismdashboard.mbie.govt.nz/), full code available on [github](https://github.com/nz-mbie/tourism-dashboard-public), a really awesome project.
 
---
-
-Actually, tourism is the main sector in the economic development in Canary Islands, representing the [34.3% GDP and 39.7% employment in this region in 2016 (IMPACTUR, 2016)](http://www.exceltur.org/wp-content/uploads/2017/09/IMPACTUR-Canarias-2016.pdf).
-
-This means that it is necessary to increase the knowledgement of this sector and disseminate information obtained with population in general and decision-makers in concrete.
-
---
-
-A combination of, by one side open data provided by [ISTAC](http://www.gobiernodecanarias.org/istac/), and by the other side, different tools and programming languages such as [Github](https://github.com/) and [R](https://www.r-project.org/), let us to concrete these ideas in a tourism dashboard with open data, open code and free use.
+![The New Zealand Tourism Dashboard](images/TNZTD.png)
 
 ---
 
-class: inverse, middle, center
+# Tools
 
-# STEP 1: DATA ACCESS &lt;br&gt; The istacr package
+* [istacr](https://github.com/rOpenSpain/istacr): R package to make programatic access to data from the  ([ISTAC](http://www.gobiernodecanarias.org/istac/)) base API.
+
+
+
+* [Canary Islands Tourism Dashboard](https://jmcartiles.shinyapps.io/canary_islands_tourism_dashboard/): A Shiny dashboard to disseminate data and insights from the [Touristic Expenditure Survey of the ISTAC](http://www.gobiernodecanarias.org/istac/temas_estadisticos/sectorservicios/hosteleriayturismo/demanda/C00028A.html).
+
+
+
 
 ---
 
-Starting point consist in create [istacr](https://github.com/rOpenSpain/istacr) package to make programatic access to all datasets available using ISTAC base API. Actually this package is a contribution to the open data community [rOpenSpain](https://ropenspain.es/).
+
+background-image: url("images/istac.png")
+background-position: 85% 1%
+background-size: 200px auto
+
+# ISTAC
+
+&gt;  The ISTAC is the body responsible for promoting, managing and coordinating the public statistical activity of the Autonomous Community of the Canary Islands
+
+[![istac_web](images/web_istac.png)](http://www.gobiernodecanarias.org/istac/)
+
+---
+
+* Empleo
+* Encuesta de población activa
+* Series trimestrales. Islas y comarcas de Canarias. 2002 Primer trimestre - 2018 Primer trimestre
+
+![istac_web](images/web_istac_5000.png)
+
+---
+
+class: inverse, center, middle
+
+# THE ISTACR PACKAGE
+
+---
+background-image: url("images/ropenspain.png")
+background-position: 85% 7%
+background-size: 200px auto
+
+
+# ISTACR
+
+[istacr](https://github.com/rOpenSpain/istacr) is a package to make programatic access to all datasets available using ISTACBase API. Actually this package is a contribution to the open data community [rOpenSpain](https://ropenspain.es/).
+
+
 
 # How to use istacr?&lt;br&gt;Quite easy...
 
-Here we reproduce a [guide of use](http://jmcartiles.netlify.com/post/istacr-a-quick-example-i/). The example of use is focused on showing the total tourism expenditure in Canary Islands by year and by origin country.
+Here we reproduce a [guide of use](http://jmcartiles.netlify.com/post/istacr-a-quick-example-i/). 
 
 ---
 
@@ -99,8 +123,8 @@ library(istacr)
 # Load essentials package for this example
 # install.packages("dplyr")
 # install.packages("ggplot2")
-suppressPackageStartupMessages(library(dplyr))
-suppressPackageStartupMessages(library(ggplot2))
+library(dplyr)
+library(ggplot2)
 ```
 
 
@@ -108,7 +132,10 @@ suppressPackageStartupMessages(library(ggplot2))
 
 # Using metadata to choose the desired dataset (1)
 
-In this package it is included a dataset which contain some metadata of each dataset available using the [ISTAC](http://www.gobiernodecanarias.org/istac/) base API. It is shown using:
+
+
+
+In this package it is included a dataframe which contain some metadata of each dataset available using the [ISTAC](http://www.gobiernodecanarias.org/istac/)Base API. It is shown using:
 
 
 ```r
@@ -134,18 +161,46 @@ glimpse(cache)
 
 ---
 
-
 # Using metadata to choose the desired dataset (2)
-
---
-
-As in this example the objective is to get data of tourism expenditure. It is a chance to look for the string *“egt”* in the metadata and generate a subset with all datasets where that string is found. In this case the field (variable) should be *“datos publicadosII”*.
 
 
 ```r
-busqueda.egt &lt;- istac_search("egt", fields = "datos publicadosII")
-# View(busqueda.egt) # use this to see metadata obtained
+busqueda.egt &lt;- istac_search("paro")
 ```
+
+* Regular expressions `paro|empleo`
+* Using the parameter `fields`
+
+
+```r
+busqueda.egt &lt;- istac_search("egt",
+*                            fields = "datos publicadosII"
+                             )
+```
+
+
+```
+## Observations: 228
+## Variables: 11
+## $ tema                 &lt;chr&gt; "Sector servicios", "Sector servicios", "...
+## $ subtemaI             &lt;chr&gt; "Hostelería y turismo", "Hostelería y tur...
+## $ subtemaII            &lt;chr&gt; "Encuesta sobre Gasto Turístico", "Encues...
+## $ `datos publicadosI`  &lt;chr&gt; "Series según metodología 2016", "Series ...
+## $ `datos publicadosII` &lt;chr&gt; "EGT / Series trimestrales de gasto turís...
+## $ apijson              &lt;chr&gt; "http://www.gobiernodecanarias.org/istac/...
+## $ lista_tablas         &lt;chr&gt; "Macromagnitudes. Canarias e islas por añ...
+## $ titulo               &lt;chr&gt; "Gasto turístico total según países de re...
+## $ origen               &lt;chr&gt; "Instituto Canario de Estadística (ISTAC)...
+## $ encuesta             &lt;chr&gt; "Encuesta sobre el Gasto Turístico", "Enc...
+## $ ID                   &lt;chr&gt; "sec.hos.enc.ser.2528", "sec.hos.enc.ser....
+```
+
+
+---
+
+The example of use is focused on showing the total tourism expenditure in Canary Islands by year and by origin country.
+
+As in this example the objective is to get data of tourism expenditure. It is a chance to look for the string *“egt”* in the metadata and generate a subset with all datasets where that string is found. In this case the field (variable) should be *“datos publicadosII”*.
 
 --
 
@@ -170,8 +225,7 @@ In one line the full dataset it is ready to use:
 
 
 ```r
-df &lt;- suppressWarnings(istac(busqueda.egt$ID[1],
-                             POSIXct = TRUE, freq = "anual"))
+df &lt;- istac(busqueda.egt$ID[1], POSIXct = TRUE, freq = "anual")
 ```
 
 --
@@ -198,8 +252,10 @@ Finally, using *ggplot* the year evolution of total expenditure is:
 
 
 ```r
-ggplot(df.anual, aes(x = Periodos, y = valor,
-                     fill = `Países de residencia`)) +
+ggplot(df.anual,
+       aes(x = Periodos,
+           y = valor,
+           fill = `Países de residencia`)) +
   geom_col(position = "dodge") +
   xlab("") +
   ylab("") +
@@ -213,7 +269,7 @@ ggplot(df.anual, aes(x = Periodos, y = valor,
 
 class: center
 
-![](presentation_carma2018_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](presentation_carma2018_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -224,13 +280,37 @@ class: inverse, middle, center
 
 ---
 
+
+--
+Actually, tourism is the main sector in the economic development in Canary Islands, representing the [34.3% GDP and 39.7% employment in this region in 2016 (IMPACTUR, 2016)](http://www.exceltur.org/wp-content/uploads/2017/09/IMPACTUR-Canarias-2016.pdf).
+
+This means that it is necessary to increase the knowledgement of this sector and disseminate information obtained with population in general and decision-makers in concrete.
+
+---
+
+
+
 # Creating a Shiny Web Application
 
 This application is feed up using the ISTAC base API through istacr and its main purposes are the access to ISTAC tourism data and to facilitate the understanding of tourism patterns in the Canary Islands with special attention to exploit the statistics which comes from Touristic Expenditure Survey.
 
---
+![Home DashBoard](images/dashboard_home.png)
+
+---
 
 The structure of this Shiny shows a dashboard with main results and several slides describing different data. It is available to filter data and change the rendered visualization. It has an option to download data.
+
+![EGT DashBoard](images/dashboard_egt.png)
+
+
+---
+![Mapa DashBoard](images/dashboard_mapa.png)
+
+
+---
+# Conclusions
+
+A combination of, by one side open data provided by [ISTAC](http://www.gobiernodecanarias.org/istac/), and by the other side, different tools and programming languages such as [Github](https://github.com/) and [R](https://www.r-project.org/), let us to concrete these ideas in a tourism dashboard with open data, open code and free use.
 
 ---
 
@@ -256,23 +336,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
